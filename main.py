@@ -68,8 +68,8 @@ def add_birthday(args, book):
 def show_birthday(args, book):
     name = args[0]
     record = book.find(name)
-    if name:
-        birthday = record.birthday.value.strftime('%d.%m.%Y')
+    if record.birthday:
+        birthday = record.birthday.value
     return f"{name}: {birthday}"
     
 @input_error
@@ -77,8 +77,8 @@ def birthdays(args, book):
     upcoming = book.get_upcoming_birthdays()
     if not upcoming:
         return "No birthdays in the next 7 days"
-    for el in upcoming:
-        return f"{el['name']} : {el['birthday']}"
+    return "\n".join(f"{el['name']} : {el['birthday']}" for el in upcoming)
+
         
 def main():
     book = load_data()

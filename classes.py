@@ -68,7 +68,7 @@ class Record:
         self.birthday = birthday    
         
     def __str__(self):
-        birthday_string = self.birthday.value.strftime("%d.%m.%Y") if self.birthday else "не указан"
+        birthday_string = self.birthday.value if self.birthday else "не указан"
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}, birthday:{birthday_string}"
 
 class AddressBook(UserDict):
